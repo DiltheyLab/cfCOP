@@ -259,11 +259,12 @@ def main():
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     connect_failed = 0
     if args.connect_db:
+        connect_db = os.path.abspath(args.connect_db)
         if not os.path.isdir(args.connect_db):
             connect_failed = 1
         db_files = ["combined_db.fasta","combined_db.mmi","Filter/complexity.bed","Filter/homology_family.bed","Filter/plasmid.bed", "taxonomy"] 
         db_params = ["database_fasta","minimap2_index","complexity_filter","homology_filter","plasmid_filter","taxonomy"]
-        db_paths = [os.path.join(args.connect_db, x) for x in db_files]
+        db_paths = [os.path.join(connect_db, x) for x in db_files]
         for p in db_paths:
             if not os.path.exists(p):
                 connect_failed = 1
@@ -310,7 +311,7 @@ def main():
             validation_fail = 1
             break                
     if validation_fail:            
-        sys.stderr.write("cfCOP databased is invalid. To connect cfCOP database: run_cfCOP.py --connect_db /your/path/to/cfCOP_database \nBye!\n")
+        sys.stderr.write("cfCOP database is invalid. To connect cfCOP database: run_cfCOP.py --connect_db /your/path/to/cfCOP_database \nBye!\n")
         exit(1)
 
     acceptable_mappers = set(["minimap2", "bwa"])
