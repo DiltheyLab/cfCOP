@@ -36,10 +36,6 @@ conda activate cfCOPenv.yml
 To retrieve a cfCOP metagenomic database use the command:
 
 ```bash
-wget "https://www.dropbox.com/scl/fi/x194ided1ivqakouzz5ud/2024_12_07_cfCOPdb_export.tar.gz?rlkey=wap4nv3o1n7q0o624a8zqfhtm&e=1&dl=1" -O /your/path/to/2024_12_07_cfCOPdb_export.tar.gz
-``` 
-
-```bash
 wget "https://www.dropbox.com/scl/fi/asu9s784zb2iy7cam7w4k/2024_12_07_cfCOPdb_export.tar.gz?rlkey=edlenq7i34mylmws7lfc5grcq&e=1&st=sn0nnbyf&dl=1" -O /your/path/to/2024_12_07_cfCOPdb_export.tar.gz
 ``` 
 
