@@ -39,6 +39,10 @@ To retrieve a cfCOP metagenomic database use the command:
 wget "https://www.dropbox.com/scl/fi/x194ided1ivqakouzz5ud/2024_12_07_cfCOPdb_export.tar.gz?rlkey=wap4nv3o1n7q0o624a8zqfhtm&e=1&dl=1" -O /your/path/to/2024_12_07_cfCOPdb_export.tar.gz
 ``` 
 
+```bash
+wget "https://www.dropbox.com/scl/fi/asu9s784zb2iy7cam7w4k/2024_12_07_cfCOPdb_export.tar.gz?rlkey=edlenq7i34mylmws7lfc5grcq&e=1&st=sn0nnbyf&dl=1" -O /your/path/to/2024_12_07_cfCOPdb_export.tar.gz
+``` 
+
 Unpack the database with:
 
 ```bash
@@ -81,38 +85,38 @@ Both fastq and fastq.gz are possible.
 With a single fastq file:
 
 ```bash
-run_cfCOP.py --inputs /path/to/file.fastq 
+/your/path/to/run_cfCOP.py --inputs /path/to/file.fastq 
 ``` 
 
 With multiple fastq files:
 
 ```bash
-run_cfCOP.py --inputs /path/to/files/file1.fastq /path/to/files/file2.fastq.gz
+/your/path/to/run_cfCOP.py --inputs /path/to/files/file1.fastq /path/to/files/file2.fastq.gz
 ``` 
 
 or with bash wildcards
 
 ```bash
-run_cfCOP.py --inputs /path/to/files/file*.fastq.gz
+/your/path/to/run_cfCOP.py --inputs /path/to/files/file*.fastq.gz
 ``` 
 
 Without an explicitly given mapper cfCOP uses a default mapper from nextflow.config file supplied with the pipeline. With --mapper option you set a desired mapper for the analysis. Available mapper choices: minimap2, bwa.  
 
 ```bash
-run_cfCOP.py --inputs /path/to/file.fastq --mapper minimap2
+/your/path/to/run_cfCOP.py --inputs /path/to/file.fastq --mapper minimap2
 ``` 
 
 Without an explicitly given sequencing platform cfCOP assumes data was produced on a default sequencing platform from nextflow.config file supplied with the pipeline. With --platform option you set a desired sequencing platform for the analysis. Available platform choices: illumina, nanopore. Choice of a sequencing platform influences the data mapping mode. 
 
 ```bash
-run_cfCOP.py --inputs /path/to/file.fastq --platform illumina
+/your/path/to/run_cfCOP.py --inputs /path/to/file.fastq --platform illumina
 ``` 
 
 
 ## Running cfCOP with a samplesheet
 
 ```bash
-run_cfCOP.py --samplesheet /your/path/to/samplesheet.txt 
+/your/path/to/run_cfCOP.py --samplesheet /your/path/to/samplesheet.txt 
 ``` 
 
 Samplesheet overwrites the default mapper and sequencing platform for each sample. Samplesheet enables analyss of illumina and nanopore samples with both bwa and minimap2 mapper in one run.
@@ -143,7 +147,7 @@ As an example, see provided template_samplesheet.txt
 | `--fraction_cutoff FRACTION_CUTOFF` | Report generation: Fraction of reads (of total reads) assigned to a taxon in order to be reported. Should be a float number between 0 and 1. |
 | `--connect_db CONNECT_DB` | Connect to a database by filling the paths of the database files into the `nextflow.config`.       |
 | `--resume`             | Resume the pipeline with changed parameters or for debugging purposes. Cached unchanged processes will not be re-run. |
-
+| `--ro_report`             | Per default, cfCOP creates an html report of the current run. To supress reporting, set this flag. |
 
 # Advanced configuration
 

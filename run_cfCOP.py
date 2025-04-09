@@ -229,7 +229,12 @@ def main():
         action='store_true',
         help="Resume the pipeline with changed parameters or for debuggung purposes. Stored unchanged processes will be cached, only changes will be re-run"
     )
-
+    
+    parser.add_argument(
+        '--no_report',
+        action='store_true',
+        help="Per default, cfCOP creates an html report of the current run. To supress reporting, use this flag"
+    )
     
     args = parser.parse_args()
     
@@ -377,6 +382,11 @@ def main():
         nextflow_command.extend(["--fraction_cutoff", str(args.fraction_cutoff)])
     if args.resume:
         nextflow_command.extend(["-resume"])
+    if not args.no_report:
+        time_stamp = datetime.now()
+        time_string = time_stamp.strftime("%Y_%m_%d_%H_%M")
+        report_name = "cfCOP_report_%s.html"%time_string
+        nextflow_command.extend(["-with-report", report_name])
     
     # Print and run the command
     print(f"Running command: {' '.join(nextflow_command)}")
